@@ -7,13 +7,11 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  backend-build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12.x, 16.x, 22.x]
-
+        node-version: [12.x, 16.x, 18.x, 22.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,20 +37,36 @@ jobs:
           cd backend
           npm run build
 
+  frontend-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 22.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
       # Frontend
       - name: Install dependencies for frontend
         run: |
           cd frontend
           npm install
 
+      # Uncomment and set up frontend tests when ready
       #- name: Run frontend tests
       #  run: |
       #    cd frontend
-      #    npm test # No testing setup for frontend just yet.
+      #    npm test
 
       - name: Build frontend
         run: |
           cd frontend
           npm run build
+
       
         
