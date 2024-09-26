@@ -45,7 +45,6 @@ export class ArticlesService {
 
     // update article by ID
     // this will probably be used when we update ratings for articles. 
-    // otherwise I imagine that article ratings would just be updated via an admin on the mongo db etc.
     async update(id: string, article: Partial<Article>): Promise<Article> {
         return this.articleModel.findByIdAndUpdate(id, article, { new: true}).exec();
     }
