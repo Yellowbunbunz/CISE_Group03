@@ -11,6 +11,9 @@
     font-weight: bold;
     transition: top 0.5s;
     height: fit-content;
+    
+
+    gap: 40px;
   }
   
   .hide {
@@ -27,6 +30,7 @@
     cursor: default;
     white-space: nowrap;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+ 
   }
   
   .clickable {
@@ -59,4 +63,42 @@
 
 .end {
   margin-left: auto;
+}
+
+.searchLabel {
+  margin-right: 10px;
+  color: #fff;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.searchInput {
+  padding: 5px 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #242323;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.searchButton {
+  padding: 8px 15px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

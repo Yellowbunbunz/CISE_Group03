@@ -20,6 +20,8 @@ const PopulatedNavBar = () => {
       <NavItem route="/login">
         Login
       </NavItem>
+
+      
     </NavBar>
   );
 };
