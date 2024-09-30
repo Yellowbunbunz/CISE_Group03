@@ -17,6 +17,9 @@ const PopulatedNavBar = () => {
           <NavItem route="/articles/new">Submit new</NavItem>
         </NavDropdown>
       </NavItem>
+      <NavItem route="/login">
+        Login
+      </NavItem>
     </NavBar>
   );
 };

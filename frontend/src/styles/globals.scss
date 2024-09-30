@@ -28,4 +28,86 @@
     flex-grow: 0;
     font-size: 1.5em;
 }
+
+.container {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    background-color: #000000;  // Black background
+    color: #ffffff;             // White text
+    font-family: Arial, sans-serif;  // Default font family
+  }
+
+  .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #1c1c1c;  // Dark background for form container
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-item {
+    margin-bottom: 1.5em;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.8em;
+    border-radius: 5px;
+    border: 1px solid #5c6bc0;
+    background-color: #333;
+    color: white;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #ffc107;
+  }
+  
+  button.login-button {
+    background-color: #5c6bc0;
+    color: white;
+    padding: 0.8em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.login-button:hover {
+    background-color: #3949ab;
+  }
+  
+  button.back-button {
+    background-color: #ffc107;
+    color: black;
+    padding: 0.8em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+  }
+  
+  button.back-button:hover {
+    background-color: #ffb300;
+  }
+  
+  .forgot-password {
+    margin-bottom: 1em;
+    text-align: right;
+  }
+  
+  .forgot-password a {
+    color: #5c6bc0;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
   
