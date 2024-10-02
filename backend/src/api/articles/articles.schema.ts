@@ -9,7 +9,7 @@ export class Article {
     title: string;
 
     @Prop({ required: true})
-    authors: string;
+    authors: string[]; // CHANGED TO STRING[] NOTE
 
     @Prop({ required: true})
     source: string;

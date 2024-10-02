@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsArray, ArrayNotEmpty } from 'class-validator';
 
 export class CreateArticleDto{
     
@@ -6,9 +6,10 @@ export class CreateArticleDto{
     @IsNotEmpty()
     title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    authors: string;
+    @IsArray()
+    @ArrayNotEmpty()
+    @IsString({ each: true})
+    authors: string[];
 
     @IsString()
     @IsNotEmpty()
