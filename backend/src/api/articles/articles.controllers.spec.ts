@@ -11,7 +11,7 @@ import { CreateArticleDto } from './create-article.dto';
 
 const mockArticle = {
     title: 'Example title',
-    authors: 'Example author',
+    authors: ['Example author'],
     source: 'Example source',
     publication_year: 2024,
     doi: '10.1234/example-doi',
@@ -53,7 +53,7 @@ describe('ArticlesController', () => {
     it('should create a new article', async () => {
         const dto: CreateArticleDto = {
             title: 'New Article',
-            authors: 'Max well',
+            authors: ['Max well'],
             source: 'Test Source',
             publication_year: 2024,
             doi: '10.1234/new-doi',
