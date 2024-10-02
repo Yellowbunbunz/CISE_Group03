@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle login logic here (e.g., authentication)
+
     console.log("Username input: ", username);
     console.log("Password input: ", password);
   };
