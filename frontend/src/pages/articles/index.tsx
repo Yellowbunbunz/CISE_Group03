@@ -56,10 +56,11 @@ export const getStaticProps: GetStaticProps<ArticlesProps> = async (_) => {
     const response = await axios.get('http://localhost:8082/articles');
 
 
+    // all of the articles are mapped inside of 'data'. 
     const articles = response.data.map((article: any) => ({
       id: article._id,
       title: article.title,
-      authors: article.authors,
+      authors: article.authors.join(', '),
       source: article.source,
       publication_year: article.publication_year,
       doi: article.doi,
