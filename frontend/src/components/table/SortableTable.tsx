@@ -1,4 +1,5 @@
 import React from "react";
+import styles from '../../styles/table.module.scss';
 
 interface SortableTableProps {
   headers: { key: string; label: string }[];
@@ -6,7 +7,7 @@ interface SortableTableProps {
 }
 
 const SortableTable: React.FC<SortableTableProps> = ({ headers, data }) => (
-  <table>
+  <table className = {styles.table}>
     <thead>
       <tr>
         {headers.map((header) => (

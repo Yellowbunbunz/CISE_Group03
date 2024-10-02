@@ -1,32 +1,49 @@
 import { FormEvent, useState } from "react";
 import formStyles from "../../styles/Form.module.scss";
+import axios from "axios";
 
+
+// Suggesting an article via the form.
+// Couple notes:
+//  1) We don't necessarily need to do any format checking as the product is supposed to
+//     have moderators physically checking the submissions.
 const NewDiscussion = () => {
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState<string[]>([]);
   const [source, setSource] = useState("");
   const [pubYear, setPubYear] = useState<number>(0);
   const [doi, setDoi] = useState("");
-  const [summary, setSummary] = useState("");
-  const [linkedDiscussion, setLinkedDiscussion] = useState("");
+  const [claim, setClaim] = useState("");
+  const [evidence, setEvidence] = useState("");
 
   const submitNewArticle = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // after the submit button is clicked, the form data is sent here to then be sent to the backend via axios
 
-    // this process is logging the JSON string to the console for example purposes.
-    // in a real application, this JSON string would be sent to backend for processing.
-    console.log(
-      JSON.stringify({
-        title,
-        authors,
-        source,
-        publication_year: pubYear,
-        doi,
-        summary,
-        linked_discussion: linkedDiscussion,
-      })
-    );
+    const articleData = {
+      title,
+      authors,
+      source,
+      publication_year: pubYear,
+      doi,
+      claim,
+      evidence
+    }
+
+    console.log(articleData);
+    console.log(JSON.stringify(articleData));
+
+    try {
+      const response = await axios.post('http://localhost:8082/articles', articleData);
+
+
+      // Here we can implement a pop-up telling the user that it was submitted successfully and to await moderation.
+      console.log('Da article was submitted eh:', response.data);
+    } catch (error) {
+      console.error('Error submitting dat shit:', error);
+    }
+    
   };
 
   // Some helper methods for the authors array
@@ -48,7 +65,6 @@ const NewDiscussion = () => {
   };
 
   // Return the full form
-
   return (
     <div className="container">
       <h1>New Article</h1>
@@ -117,11 +133,7 @@ const NewDiscussion = () => {
         value={pubYear}
         onChange={(event) => {
           const val = event.target.value;
-          if (val === "") {
-            setPubYear(0);
-          } else {
-            setPubYear(parseInt(val));
-          }
+          setPubYear(parseInt(val));
         }}
       />
 
@@ -137,14 +149,30 @@ const NewDiscussion = () => {
         }}
       />
 
-      <label htmlFor="summary">Summary:</label>
-      <textarea
-        className={formStyles.formTextArea}
-        name="summary"
-        value={summary}
-        onChange={(event) => setSummary(event.target.value)}
-        />
+      <label htmlFor="claim">Claim:</label>
+      <input
+        className={formStyles.formItem}
+        type="text"
+        name="claim"
+        id="claim"
+        value={claim}
+        onChange={(event) => {
+          setClaim(event.target.value);
+        }}
+      />
 
+      <label htmlFor="evidence">Evidence:</label>
+      <input
+        className={formStyles.formItem}
+        type="text"
+        name="evidence"
+        id="evidence"
+        value={evidence}
+        onChange={(event) => {
+          setEvidence(event.target.value);
+        }}
+      
+      />
         <button className={formStyles.formItem} type="submit">
           Submit
         </button>
@@ -154,6 +182,3 @@ const NewDiscussion = () => {
 };
 
 export default NewDiscussion;
-
-
-
