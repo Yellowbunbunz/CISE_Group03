@@ -8,6 +8,9 @@
     padding: 1em;
     margin: 1em 0;
     flex-grow: 1;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    resize: none;
 }
 
 .formTextArea {
@@ -28,4 +31,3 @@
     flex-grow: 0;
     font-size: 1.5em;
 }
-  

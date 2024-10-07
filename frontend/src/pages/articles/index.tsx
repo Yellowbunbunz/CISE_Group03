@@ -12,6 +12,7 @@ interface ArticlesInterface {
   doi: string;
   claim: string;
   evidence: string;
+  summary: string;
   averageRating: number;
   totalRatings: number;
 }
@@ -33,7 +34,7 @@ const Articles: NextPage<ArticlesProps> = ({ articles }) => {
     { key: "evidence", label: "Evidence" },
     { key: "averageRating", label: "Average Rating"},
     { key: "totalRatings", label: "Total Ratings"},
-  ];
+  ]; 
 
   // this is the actual page element that displays the table
   return (
@@ -66,6 +67,7 @@ export const getStaticProps: GetStaticProps<ArticlesProps> = async (_) => {
       doi: article.doi,
       claim: article.claim,
       evidence: article.evidence,
+      summary: article.summary,
       averageRating: article.averageRating,
       totalRatings: article.totalRatings,
     }));
