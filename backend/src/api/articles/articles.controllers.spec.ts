@@ -17,6 +17,7 @@ const mockArticle = {
     doi: '10.1234/example-doi',
     claim: 'Example claim',
     evidence: 'Example evidence',
+    summary: 'Example summary with random words that mean nothing.',
     averageRating: 0,
     totalRatings: 0,
 };
@@ -59,6 +60,7 @@ describe('ArticlesController', () => {
             doi: '10.1234/new-doi',
             claim: 'it solves everything',
             evidence: 'trust me bro',
+            summary: 'example summary that will only be displayed if users click on an article for more information.'
         };
 
         const result = await controller.create(dto);

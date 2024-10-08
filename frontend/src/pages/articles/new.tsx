@@ -15,6 +15,7 @@ const NewDiscussion = () => {
   const [doi, setDoi] = useState("");
   const [claim, setClaim] = useState("");
   const [evidence, setEvidence] = useState("");
+  const [summary, setSummary] = useState("");
 
   const submitNewArticle = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,7 +29,8 @@ const NewDiscussion = () => {
       publication_year: pubYear,
       doi,
       claim,
-      evidence
+      evidence,
+      summary,
     }
 
     console.log(articleData);
@@ -36,7 +38,6 @@ const NewDiscussion = () => {
 
     try {
       const response = await axios.post('http://localhost:8082/articles', articleData);
-
 
       // Here we can implement a pop-up telling the user that it was submitted successfully and to await moderation.
       console.log('Da article was submitted eh:', response.data);
@@ -173,6 +174,23 @@ const NewDiscussion = () => {
         }}
       
       />
+
+      <label htmlFor="Summary">Summary:</label>
+      <textarea 
+        className={formStyles.formItem}
+        name="summary"
+        id="summary"
+        value={summary}
+
+        rows={5}
+        cols={50}
+        placeholder="Enter your summary here..."
+
+        onChange={(event) => {
+          setSummary(event.target.value);
+        }}
+      />
+
         <button className={formStyles.formItem} type="submit">
           Submit
         </button>

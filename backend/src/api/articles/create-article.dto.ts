@@ -31,6 +31,9 @@ export class CreateArticleDto{
     @IsNotEmpty()
     evidence: string;
 
+    @IsString()
+    summary : string;
+
     // We dont need to include these as they are calculated/created
     // from within the system.
     // averageRating: number;

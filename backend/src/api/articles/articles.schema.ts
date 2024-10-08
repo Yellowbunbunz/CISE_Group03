@@ -26,6 +26,9 @@ export class Article {
     @Prop ({ required : true})
     evidence: string;
 
+    @Prop ({ required: false})
+    summary: string;
+
     @Prop ({ type: Number, default: 0})
     averageRating: number;
 
