@@ -1,9 +1,9 @@
 name: GitHub Actions Test
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "feat/vercel-development" ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "feat/vercel-development" ]
   workflow_call:
   workflow_dispatch:
   jobs:
