@@ -12,7 +12,7 @@ on:
 jobs:
   Test:
     if: github.event.pull_request.merged == true
-    uses: GoDZz412/CISE_Group03/.github/workflows/test.yml@develop
+    uses: Yellowbunbunz/CISE_Group03/.github/workflows/test.yml@develop
 
   Deploy-Production:
     if: github.event.pull_request.merged == true

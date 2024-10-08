@@ -8,7 +8,7 @@ on:
 
 jobs:
   Test:
-    uses: GoDZz412/CISE_Group03/.github/workflows/test.yml@develop
+    uses: Yellowbunbunz/CISE_Group03/.github/workflows/test.yml@develop
 
   Deploy-Preview:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        path: ./frontend  # Specify the frontend directory
+        path: ./frontend 
 
     - name: Install Vercel CLI
       run: npm install --global vercel@canary
