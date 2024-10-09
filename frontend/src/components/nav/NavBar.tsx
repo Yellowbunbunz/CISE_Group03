@@ -13,28 +13,30 @@ const NavBar = ({ children }: Props) => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if(searchQuery.trim()) {
-      router.push(`/search?title=${searchQuery}`);
+    if (searchQuery.trim()) {
+      // Navigate to the search page with a unified query parameter
+      router.push(`/articles/search?query=${encodeURIComponent(searchQuery)}`);
     }
   };
 
-  return <nav className={styles.navbar}>
-    {children}
-
-  
-    <form onSubmit={handleSearch} className={styles.searchForm}>
-      <label htmlFor="Search" className={styles.searchLabel}>Search: </label>
-      <input
-        type="text"
-        id="search"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Enter article title"
-        className={styles.searchInput}
-      />
-      <button type ="submit" className={styles.searchButton}>Go</button>
-    </form>
-    </nav>;
+  return (
+    <nav className={styles.navbar}>
+      {children}
+      
+      <form onSubmit={handleSearch} className={styles.searchForm}>
+        <label htmlFor="search" className={styles.searchLabel}>Search: </label>
+        <input
+          type="text"
+          id="search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Enter title or publication year"
+          className={styles.searchInput}
+        />
+        <button type="submit" className={styles.searchButton}>Go</button>
+      </form>
+    </nav>
+  );
 };
 
 export default NavBar;
