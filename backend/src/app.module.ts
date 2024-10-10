@@ -7,7 +7,8 @@ import { ArticlesModule } from './api/articles/articles.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(), MongooseModule.forRoot(process.env.DB_URI),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.DB_URI),
     ArticlesModule,
   ],
   controllers: [AppController],
