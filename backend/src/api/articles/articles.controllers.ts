@@ -16,14 +16,22 @@ export class ArticlesController {
         return this.articlesService.findAll();
     }
 
+    // Search by Title
     @Get('search-by-title')
     async findByTitle(@Query('title') title: string): Promise<Article[]> {
         return this.articlesService.findByTitle(title);
     }
 
+    // Search by title
     @Get('search-by-year/:year')
     async findByPublicationYear(@Param('year') year:number): Promise<Article[]> {
         return this.articlesService.findByPublicationYear(year);
+    }
+
+    // Search by category
+    @Get('search-by-category')
+    async findByCategory(@Query('category') category: string): Promise<Article[]> {
+        return this.articlesService.findByCategory(category);
     }
 
     //Get functions to allow users to search for articles either by title or by publication year
