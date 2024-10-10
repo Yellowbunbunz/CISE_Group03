@@ -3,6 +3,22 @@ import { useRouter } from 'next/router';
 import SortableTable from '../../components/table/SortableTable';
 import axios from 'axios';  // Use axios for consistency
 
+// Api Article follows the structure of the data returned from the API request. It matches the backends data interface.
+interface ApiArticle {
+  _id: string;
+  title: string;
+  authors: string[];
+  source: string;
+  publication_year: string;
+  doi: string;
+  claim: string;
+  evidence: string;
+  summary: string;
+  averageRating: number;
+  totalRatings: number;
+}
+
+// This is the interface we use to pass to SortableTable, after the authors have been joined to one string.
 interface ArticlesInterface {
   id: string;
   title: string;
@@ -32,17 +48,17 @@ const SearchPage = () => {
           // Check if the query is a number (publication year) or not (title)
           if (!isNaN(Number(queryString))) {
             // If the query is a number, search by publication year
-            response = await axios.get(`http://localhost:8082/articles/search-by-year/${queryString}`);
+            response = await axios.get<ApiArticle[]>(`http://localhost:8082/articles/search-by-year/${queryString}`);
           } else {
             // If not a number, search by title
-            response = await axios.get(`http://localhost:8082/articles/search-by-title?title=${queryString}`);
+            response = await axios.get<ApiArticle[]>(`http://localhost:8082/articles/search-by-title?title=${queryString}`);
           }
 
           // Map the response data to the required format
-          const data = response.data.map((article: any) => ({
+          const data = response.data.map((article): ArticlesInterface => ({
             id: article._id,
             title: article.title,
-            authors: article.authors.join(', '),
+            authors: article.authors.join(", "),
             source: article.source,
             publication_year: article.publication_year,
             doi: article.doi,

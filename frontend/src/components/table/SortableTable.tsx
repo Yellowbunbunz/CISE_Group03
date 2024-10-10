@@ -89,8 +89,6 @@ const SortableTable: React.FC<SortableTableProps> = ({ headers, data }) => {
       </div>
   </div>
 )}
-
-
   </>
   )
 }

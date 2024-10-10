@@ -65,6 +65,7 @@ const Articles: NextPage<ArticlesProps> = ({ articles }) => {
 export const getStaticProps: GetStaticProps<ArticlesProps> = async () => {
   // Here is where we use axios to call our API endpoint and collect the data.
   try {
+    
     // This is the articles index page which is actually accessed when we click the 'view articles' button.
     // So the request is to /articles which corresponds to the @Get('') findAll function in articles.controllers.
     const response = await axios.get<ApiArticle[]>('http://localhost:8082/articles');
