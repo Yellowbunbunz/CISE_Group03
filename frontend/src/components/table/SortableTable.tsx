@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import styles from '../../styles/table.module.scss';
 
+interface Article {
+  title: string;
+  authors: string;
+  publication_year: string;
+  averageRating: number;
+  totalRatings: number;
+  summary: string;
+}
+
 interface SortableTableProps {
   headers: { key: string; label: string }[];
-  data: any[];
+  data: Article[];
 }
 
 const SortableTable: React.FC<SortableTableProps> = ({ headers, data }) => {
 
   // logic for selecting article state and POPUP window.
-  const [selectedArticle, setSelectedArticle] = useState<any | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [isPopupVisible, setPopupVisible] = useState(false); // originally set to false.
 
   // rowclick function
-  const handleRowClick = (article: any) => {
+  const handleRowClick = (article: Article) => {
     setSelectedArticle (article);
     setPopupVisible (true);
   };
@@ -42,7 +51,7 @@ const SortableTable: React.FC<SortableTableProps> = ({ headers, data }) => {
           /* Row highlighting check */
           className={selectedArticle === row ? styles.highlightedRow : ""}> 
             {headers.map((header) => (
-              <td key={header.key}>{row[header.key]}</td>
+              <td key={header.key}>{row[header.key as keyof Article]}</td>
             ))}
           </tr>
         ))}
@@ -80,8 +89,6 @@ const SortableTable: React.FC<SortableTableProps> = ({ headers, data }) => {
       </div>
   </div>
 )}
-
-
   </>
   )
 }

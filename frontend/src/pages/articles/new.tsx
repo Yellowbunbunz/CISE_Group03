@@ -191,9 +191,9 @@ const NewDiscussion = () => {
         }}
       />
 
-        <button className={formStyles.formItem} type="submit">
-          Submit
-        </button>
+      <button className={formStyles.formItem} type="submit">
+        Submit
+      </button>
       </form>
     </div>
   );
