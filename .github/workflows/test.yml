@@ -17,10 +17,18 @@ jobs:
         with:
           node-version: '14'  
 
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ./frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend 
+        working-directory: ./frontend
 
       - name: Run tests
-        run: npm run test -- --ci
-        working-directory: ./frontend  
+        run: npx jest --ci
+        working-directory: ./frontend
