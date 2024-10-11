@@ -2,19 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "main.ts",
-        "use": "@vercel/node" 
-      },
-      {
-        "src": "pages/**/*.{js,ts,jsx,tsx}",
-        "use": "@vercel/next"  
+        "src": "src/main.ts",
+        "use": "@vercel/node"  
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "main.ts"
+        "src": "/api/(.*)",   
+        "dest": "src/main.ts"
       }
-    ],
-    "devCommand": "npm run start:dev" 
+    ]
   }
