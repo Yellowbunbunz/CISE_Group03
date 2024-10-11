@@ -1,16 +1,15 @@
 {
-    "version": 2,
     "builds": [
       {
-        "src": "src/main.ts",
-        "use": "@vercel/node"
+        "src": "main.ts",
+        "use": "@vercel/nestjs"
       }
     ],
-    "devCommand": "npm run start:dev", 
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "src/main.ts"
+        "src": "/(.*)",
+        "dest": "main.ts"
       }
-    ]
+    ],
+    "devCommand": "npm run start:dev"
   }
