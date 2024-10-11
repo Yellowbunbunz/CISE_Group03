@@ -10,6 +10,7 @@ import axios from "axios";
 const NewDiscussion = () => {
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState<string[]>([]);
+  const [category, setCategory] = useState("");
   const [source, setSource] = useState("");
   const [pubYear, setPubYear] = useState<number>(0);
   const [doi, setDoi] = useState("");
@@ -25,6 +26,7 @@ const NewDiscussion = () => {
     const articleData = {
       title,
       authors,
+      category,
       source,
       publication_year: pubYear,
       doi,
@@ -113,6 +115,20 @@ const NewDiscussion = () => {
         +
       </button>
 
+      <label htmlFor="category">Category:</label>
+      <select
+        className={formStyles.formItem}
+        name="category"
+        value={category}
+        onChange={(event) => setCategory(event.target.value)}
+      >
+        <option value = "">Select a category</option>
+        <option value = "Cat 1">Cat 1</option>
+        <option value = "Cat 2">Cat 2</option>
+        <option value = "Cat 3">Cat 3</option>
+        <option value = "Cat 4">Cat 4</option>
+        </select>
+        
       <label htmlFor="source">Source:</label>
       <input
         className={formStyles.formItem}

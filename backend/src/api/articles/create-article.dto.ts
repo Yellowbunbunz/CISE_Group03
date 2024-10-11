@@ -12,6 +12,9 @@ export class CreateArticleDto{
     authors: string[];
 
     @IsString()
+    category: string;
+
+    @IsString()
     @IsNotEmpty()
     source: string;
 

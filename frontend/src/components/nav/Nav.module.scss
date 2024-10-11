@@ -39,13 +39,14 @@
   }
   
   .clickable:hover {
-    backdrop-filter: brightness(50%);
+    transform: scale(1.20); /* Slight scale on hover */
 }
 
 .dropdown_container {
   visibility: hidden;
   display: flex;
   flex-direction: column;
+  border-radius: 15px;
   background-color: darkblue;
   position: absolute;
   top: 100%;
@@ -54,8 +55,8 @@
 
 .dropdown:hover {
   cursor: pointer;
-  backdrop-filter: brightness(50%);
-
+  //transform: scale(1.20); /* Slight scale on hover */
+  
   .dropdown_container {
     visibility: visible;
   }
@@ -82,23 +83,67 @@
   padding: 5px 10px;
   margin-right: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 20px;
   background-color: #fff;
   color: #242323;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .searchButton {
-  padding: 8px 15px;
+  padding: 5px 10px;
   background-color: #fff;
   color: #333;
-  border: none;
+  border: 1px solid;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
+  margin-right: 8px;
 
   &:hover {
     background-color: #ddd;
   }
 
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.categoryContainer {
+  //position: relative; /* Positioning context for dropdown */
+  margin-right: 10px; /* Space between category and search */
+  margin-left: 10px;
+  height: auto;
+}
+
+.categoryLabel {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    //background-color: #f0f8ff; /* Light background on hover */
+    transform: scale(1.20); /* Slight scale on hover */
+  }
+}
+
+.categoryList {
+  position: absolute; /* Position dropdown absolutely */
+  background: lightgray;
+  border: 10px solid #ccc;
+  border-radius: 15px;
+  margin-top: 5px;
+  width: 120px;
+  //z-index: 1000; /* Ensure dropdown appears above other elements */
+}
+
+.categoryButton {
+  background: cyan;
+  border-radius: 20px;
+  padding: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  //text-align: left;
+  width: 100%; /* Full width */
+
+  &:hover {
+    background-color: #f0f8ff; /* Light background on hover */
+    transform: scale(1.15); /* Slight scale on hover */
+  }
 }
