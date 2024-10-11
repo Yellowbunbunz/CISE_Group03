@@ -1,8 +1,9 @@
 {
+    "version": 2,
     "builds": [
       {
         "src": "main.ts",
-        "use": "@vercel/nestjs"
+        "use": "@vercel/node"  
       }
     ],
     "routes": [
