@@ -3,7 +3,11 @@
     "builds": [
       {
         "src": "main.ts",
-        "use": "@vercel/node"  
+        "use": "@vercel/node"
+      },
+      {
+        "src": "pages/**/*.{js,ts,jsx,tsx}",
+        "use": "@vercel/next"
       }
     ],
     "routes": [
@@ -12,5 +16,5 @@
         "dest": "main.ts"
       }
     ],
-    "devCommand": "npm run start:dev"
+    "devCommand": "npm run start:dev" 
   }
