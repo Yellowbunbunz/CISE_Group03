@@ -125,8 +125,9 @@ const NewDiscussion = () => {
         <option value = "Cat 1">Cat 1</option>
         <option value = "Cat 2">Cat 2</option>
         <option value = "Cat 3">Cat 3</option>
-      </select>
-
+        <option value = "Cat 4">Cat 4</option>
+        </select>
+        
       <label htmlFor="source">Source:</label>
       <input
         className={formStyles.formItem}

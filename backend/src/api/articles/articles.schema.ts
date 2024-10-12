@@ -17,6 +17,9 @@ export class Article {
     @Prop({ required: true})
     source: string;
 
+    @Prop({ required: false })
+    category: string;
+
     @Prop({ required: true})
     publication_year: number;
 
