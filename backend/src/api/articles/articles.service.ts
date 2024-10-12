@@ -27,11 +27,6 @@ export class ArticlesService {
         return this.articleModel.find({ publication_year: year }).exec();
     }
 
-    //fetch articles by their category.
-    async findByCategory(cat: string)  : Promise<Article[]> {
-        return this.articleModel.find({category: cat}).exec();
-    }
-
     // this function finds an article based on the _id assigned by MongoDB. 
     // users wont use this one as searching via an ID like: 12bufiub12431341@fwefe is weird, but good for testing.
     async findOne(id: string): Promise<Article> {

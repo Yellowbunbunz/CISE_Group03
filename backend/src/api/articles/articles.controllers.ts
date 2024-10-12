@@ -46,12 +46,7 @@ export class ArticlesController {
         } else {
             // Otherwise, search by title
             return this.articlesService.findByTitle(titleQuery);
-    }
-    }
-    
-    @Get('search-by-category')
-    async findByCategory(@Query('category') category: string): Promise<Article[]> {
-        return this.articlesService.findByCategory(category);
+        }
     }
 
     @Get(':id')
