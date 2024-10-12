@@ -33,6 +33,11 @@ export class ArticlesService {
         return this.articleModel.findById(id).exec();
     }
 
+    //fetch articles by category
+    async findByCategory(category: string): Promise<Article[]> {
+        return this.articleModel.find({ category: { $regex: category, $options: 'i' } }).exec();
+    }
+
     // Create a new article
     async create(CreateArticleDto: CreateArticleDto): Promise<Article> {
         const newArticle = new this.articleModel({
