@@ -6,17 +6,13 @@ import { CreateUserDto } from './create-user.dto';
 export class UsersController {
     constructor(private readonly userService: UserService) {}
 
+    @Post('register')
+    async register(@Body() userDto: CreateUserDto){
+        return this.userService.register(userDto);
+    }
+
     @Post('login')
-    async login(@Body() userDto: CreateUserDto): Promise<{token: string}> {
-        
-        // need to check the user was validated in the service
-    
-        const userAuthenticated = this.userService.validateUser(userDto);
-
-        if(!userAuthenticated){
-            throw new UnauthorizedException("Invalid username or password.");
-        }
-
-        return { token: 'placeholder token'};
+    async login(@Body() userDto: CreateUserDto){
+        return this.userService.login(userDto);
     }
 }

@@ -35,9 +35,6 @@ const NewDiscussion = () => {
       summary,
     }
 
-    console.log(articleData);
-    console.log(JSON.stringify(articleData));
-
     try {
       const response = await axios.post('http://localhost:8082/articles', articleData);
 
