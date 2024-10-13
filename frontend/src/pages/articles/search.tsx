@@ -36,25 +36,31 @@ interface ArticlesInterface {
 const SearchPage = () => {
   const [articles, setArticles] = useState<ArticlesInterface[]>([]);
   const router = useRouter();
-  const { query } = router.query; // Get the search query from URL
+  const { query, category } = router.query; // Capture both query and category from URL
 
   useEffect(() => {
     const fetchArticles = async () => {
-      if (query) {
-        try {
-          let response;
-          const queryString = encodeURIComponent(query.toString()); // Encode the query for URL
+      try {
+        let response;
 
-          // Check if the query is a number (publication year) or not (title)
+        // Perform category search
+        if (category) {
+          response = await axios.get<ApiArticle[]>(`http://localhost:8082/articles/search-by-category?category=${category}`);
+        }
+        // Perform title/year search
+        else if (query) {
+          const queryString = encodeURIComponent(query.toString());
           if (!isNaN(Number(queryString))) {
-            // If the query is a number, search by publication year
+            // Search by year
             response = await axios.get<ApiArticle[]>(`http://localhost:8082/articles/search-by-year/${queryString}`);
           } else {
-            // If not a number, search by title
+            // Search by title
             response = await axios.get<ApiArticle[]>(`http://localhost:8082/articles/search-by-title?title=${queryString}`);
           }
+        }
 
-          // Map the response data to the required format
+        // Map the response data to the required format
+        if (response && response.data) {
           const data = response.data.map((article): ArticlesInterface => ({
             id: article._id,
             title: article.title,
@@ -69,14 +75,14 @@ const SearchPage = () => {
             totalRatings: article.totalRatings,
           }));
           setArticles(data);
-        } catch (error) {
-          console.error('Error fetching articles:', error);
         }
+      } catch (error) {
+        console.error('Error fetching articles:', error);
       }
     };
 
     fetchArticles();
-  }, [query]);  // Trigger this effect when the 'query' changes
+  }, [query, category]);  // Trigger this effect when the 'query' or 'category' changes
 
   const headers = [
     { key: 'title', label: 'Title' },
@@ -92,7 +98,18 @@ const SearchPage = () => {
 
   return (
     <div className="container">
-      <h1>Search Results for: {query}</h1>
+      <h1>Search Results</h1>
+
+      {/* Displaying search context */}
+      <div className="search-context">
+        {category ? (
+          <p>Showing results for category: <strong>{category}</strong></p>
+        ) : query ? (
+          <p>Showing results for query: <strong>{query}</strong></p>
+        ) : (
+          <p>No search criteria provided.</p>
+        )}
+      </div>
 
       {articles.length > 0 ? (
         <SortableTable headers={headers} data={articles} />
