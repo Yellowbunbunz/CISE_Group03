@@ -41,20 +41,22 @@ export default function Login() {
       <h1>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
         <div className="form-item">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Username:</label>
           <input type="text" id="login-username" 
-            name="username" value={username} 
+            name="username" 
+            value={username} 
             onChange={(e) => setUsername(e.target.value) }
             required />
         </div>
         <div className="form-item">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password:</label>
           <input type="password" id="login-password" 
-          name="password" value = {password}
-          onChange = {(e) => setPassword(e.target.value)}
-          required />
+            name="password" 
+            value = {password}
+            onChange = {(e) => setPassword(e.target.value)}
+            required />
         </div>
-        <div className="forgot-password">
+        <div className="register-link">
           <Link href="/register">Not a user? Sign up here!</Link>
         </div>
         <button type="submit" className="login-button">Login</button>

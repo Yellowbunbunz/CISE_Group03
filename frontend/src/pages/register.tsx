@@ -6,8 +6,6 @@ export default function Register(){
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-
 
     const handleRegister = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -56,12 +54,11 @@ export default function Register(){
               
             />
           </div>
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <button type="submit" className="register-button">
             Register
           </button>
         </form>
-        <button className="back-button" onClick={() => router.push('/login')}>
+        <button className="back-to-login-button" onClick={() => router.push('/login')}>
           Back to Login
         </button>
       </div>

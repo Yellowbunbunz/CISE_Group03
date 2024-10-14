@@ -39,86 +39,163 @@ body, html {
     font-family: Arial, sans-serif;
   }
 
-  .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: #1c1c1c;  // Dark background for form container
-    color: white;
-    border-radius: 10px;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-item {
-    margin-bottom: 1.5em;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.8em;
-    border-radius: 5px;
-    border: 1px solid #5c6bc0;
-    background-color: #333;
-    color: white;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #ffc107;
-  }
-  
-  button.login-button {
-    background-color: #5c6bc0;
-    color: white;
-    padding: 0.8em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button.login-button:hover {
-    background-color: #3949ab;
-  }
-  
-  button.back-button {
-    background-color: #ffc107;
-    color: black;
-    padding: 0.8em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 1em;
-  }
-  
-  button.back-button:hover {
-    background-color: #ffb300;
-  }
-  
-  .forgot-password {
-    margin-bottom: 1em;
-    text-align: right;
-  }
-  
-  .forgot-password a {
-    color: #5c6bc0;
-  }
-  
-  .forgot-password a:hover {
-    text-decoration: underline;
-  }
-  
-  #password{
-    max-width: 40%;
-  }
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #1c1c1c;  // Dark background for form container
+  color: white;
+  border-radius: 10px;
+  position: relative;
+  min-height: 350px;
+}
 
-  #username {
-    max-width: 40%;
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
 
-  .register-button{
-    width: 100px;
-  }
+.form-item {
+  margin-bottom: 1.5em;
+}
+
+input {
+  width: 100%;
+  padding: 0.8em;
+  border-radius: 5px;
+  border: 1px solid #5c6bc0;
+  background-color: #333;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  border-color: #ffc107;
+}
+
+button.login-button {
+  background-color: #5c6bc0;
+  color: black;
+
+  width: 60%;
+  padding: 0.8em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 3.5rem;
+}
+
+button.login-button:hover {
+  background-color: #3949ab;
+}
+
+button.back-button {
+  background-color: #ffc107;
+  color: black;
+
+  width: 60%;
+  padding: 0.8em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+button.back-button:hover {
+  background-color: #ce9000;
+}
+
+.register-link {
+  margin-bottom: 1em;
+  position: absolute;
+
+  bottom: 6.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.register-link a {
+  color: #5c6bc0;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+
+.register-container{
+  position: relative;
+  max-width: 400px;
+  min-height: 350px;
+
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #1c1c1c;
+  color:white;
+  border-radius: 10px;
+}
+
+.register-button{
+  background-color: #5c6bc0;
+  color: black;
+
+  width: 60% !important; 
+  padding: 0.8em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 3.5rem;
+}
+
+.register-button:hover{
+  background-color: #3949ab;
+}
+
+.back-to-login-button{
+  background-color: #ffc107;
+  color: black;
+
+  width: 60%;
+  padding: 0.8em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.back-to-login-button:hover{
+  background-color: #ce9000;
+}
+
+
+#password{
+  max-width: 100%;
+}
+
+#username {
+  max-width: 100%;
+}
+
+.register-button{
+  width: 100px;
+}
