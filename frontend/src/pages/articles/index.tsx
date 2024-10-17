@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps<ArticlesProps> = async () => {
     
     // This is the articles index page which is actually accessed when we click the 'view articles' button.
     // So the request is to /articles which corresponds to the @Get('') findAll function in articles.controllers.
-    const response = await axios.get<ApiArticle[]>('http://localhost:8082/articles');
+    const response = await axios.get<ApiArticle[]>('https://speed-backend-1.vercel.app/articles');
 
     // All of the articles are mapped inside of 'data'. 
     const articles: ArticlesInterface[] = response.data.map((article) => ({

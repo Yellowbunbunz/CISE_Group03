@@ -16,14 +16,13 @@ export default function Register(){
         };
 
         try {
-            const response = await axios.post('http://localhost:8082/users/register', registrationData);
+            const response = await axios.post('https://speed-backend-1.vercel.app/users/register', registrationData);
             console.log('Registration successful', response.data);
 
             router.push('/login');
         }
         catch(error){
             console.error('Registration error:', error);
-            
         }
     }
 
