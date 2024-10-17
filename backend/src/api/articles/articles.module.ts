@@ -5,11 +5,10 @@ import { ArticlesController } from './articles.controllers';
 import { Article, ArticleSchema } from './articles.schema';
 
 @Module({
-    imports:[
-        MongooseModule.forFeature([{name: Article.name, schema: ArticleSchema}]),
-    ],
-    providers: [ArticlesService],
-    controllers: [ArticlesController],
+  imports: [
+    MongooseModule.forFeature([{ name: Article.name, schema: ArticleSchema }]),
+  ],
+  providers: [ArticlesService],
+  controllers: [ArticlesController],
 })
-
 export class ArticlesModule {}
