@@ -11,6 +11,7 @@ async function bootstrap() {
     origin: 'https://speed-product.vercel.app/',
     methods: 'GET, POST, PUT, DELETE, OPTIONS',
     allowedHeaders: 'Content-type, Authorization',
+    credentials: true
   });
 
   await app.listen(port, () => console.log(`Server running on port ${port}`));
