@@ -45,17 +45,24 @@ const SearchPage = () => {
 
         // Perform category search
         if (category) {
-          response = await axios.get<ApiArticle[]>(`https://speed-backend-1.vercel.app/articles/search-by-category?category=${category}`);
+          response = await axios.get<ApiArticle[]>(`https://speed-backend-1.vercel.app/articles/search-by-category?category=${category}`, {
+            withCredentials: true
+          });
         }
         // Perform title/year search
         else if (query) {
           const queryString = encodeURIComponent(query.toString());
           if (!isNaN(Number(queryString))) {
             // Search by year
-            response = await axios.get<ApiArticle[]>(`https://speed-backend-1.vercel.app/articles/search-by-year/${queryString}`);
+            response = await axios.get<ApiArticle[]>(`https://speed-backend-1.vercel.app/articles/search-by-year/${queryString}`, {
+              withCredentials: true
+            });
           } else {
             // Search by title
-            response = await axios.get<ApiArticle[]>(`https://speed-backend-1.vercel.app/articles/search-by-title?title=${queryString}`);
+            response = await axios.get<ApiArticle[]>(`https://speed-backend-1.vercel.app/articles/search-by-title?title=${queryString}`, {
+                withCredentials: true
+              }
+            );
           }
         }
 
