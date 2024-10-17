@@ -10,11 +10,13 @@ import axios from "axios";
 const NewDiscussion = () => {
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState<string[]>([]);
+  const [category, setCategory] = useState("");
   const [source, setSource] = useState("");
   const [pubYear, setPubYear] = useState<number>(0);
   const [doi, setDoi] = useState("");
   const [claim, setClaim] = useState("");
   const [evidence, setEvidence] = useState("");
+  const [summary, setSummary] = useState("");
 
   const submitNewArticle = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,26 +26,23 @@ const NewDiscussion = () => {
     const articleData = {
       title,
       authors,
+      category,
       source,
       publication_year: pubYear,
       doi,
       claim,
-      evidence
+      evidence,
+      summary,
     }
-
-    console.log(articleData);
-    console.log(JSON.stringify(articleData));
 
     try {
       const response = await axios.post('http://localhost:8082/articles', articleData);
-
 
       // Here we can implement a pop-up telling the user that it was submitted successfully and to await moderation.
       console.log('Da article was submitted eh:', response.data);
     } catch (error) {
       console.error('Error submitting dat shit:', error);
     }
-    
   };
 
   // Some helper methods for the authors array
@@ -112,6 +111,20 @@ const NewDiscussion = () => {
         +
       </button>
 
+      <label htmlFor="category">Category:</label>
+      <select
+        className={formStyles.formItem}
+        name="category"
+        value={category}
+        onChange={(event) => setCategory(event.target.value)}
+      >
+        <option value = "">Select a category</option>
+        <option value = "Cat 1">Cat 1</option>
+        <option value = "Cat 2">Cat 2</option>
+        <option value = "Cat 3">Cat 3</option>
+        <option value = "Cat 4">Cat 4</option>
+        </select>
+        
       <label htmlFor="source">Source:</label>
       <input
         className={formStyles.formItem}
@@ -173,9 +186,26 @@ const NewDiscussion = () => {
         }}
       
       />
-        <button className={formStyles.formItem} type="submit">
-          Submit
-        </button>
+
+      <label htmlFor="Summary">Summary:</label>
+      <textarea 
+        className={formStyles.formItem}
+        name="summary"
+        id="summary"
+        value={summary}
+
+        rows={5}
+        cols={50}
+        placeholder="Enter your summary here..."
+
+        onChange={(event) => {
+          setSummary(event.target.value);
+        }}
+      />
+
+      <button className={formStyles.formItem} type="submit">
+        Submit
+      </button>
       </form>
     </div>
   );

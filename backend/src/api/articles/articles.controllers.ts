@@ -16,14 +16,37 @@ export class ArticlesController {
         return this.articlesService.findAll();
     }
 
+    // Search by Title
     @Get('search-by-title')
     async findByTitle(@Query('title') title: string): Promise<Article[]> {
         return this.articlesService.findByTitle(title);
     }
 
+    // Search by title
     @Get('search-by-year/:year')
     async findByPublicationYear(@Param('year') year:number): Promise<Article[]> {
         return this.articlesService.findByPublicationYear(year);
+    }
+
+    // Search by category
+    @Get('search-by-category')
+    async findByCategory(@Query('category') category: string): Promise<Article[]> {
+        return this.articlesService.findByCategory(category);
+    }
+
+    //Get functions to allow users to search for articles either by title or by publication year
+    @Get('search')
+    async search(@Query('query') query: string): Promise<Article[]> {
+        const titleQuery = query; // Assume the entire input can be a title or year
+        const yearQuery = parseInt(query, 10); // Try to parse the input as a year
+
+        if (!isNaN(yearQuery)) {
+            // If the input is a valid year, search by year
+            return this.articlesService.findByPublicationYear(yearQuery);
+        } else {
+            // Otherwise, search by title
+            return this.articlesService.findByTitle(titleQuery);
+        }
     }
 
     @Get(':id')

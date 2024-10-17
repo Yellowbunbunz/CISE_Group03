@@ -3,6 +3,21 @@ import SortableTable from "../../components/table/SortableTable";
 
 import axios from "axios"; // beginning of axios implementation.
 
+// Define the interface for the articles returned from the API
+interface ApiArticle {
+  _id: string;
+  title: string;
+  authors: string[];
+  source: string;
+  publication_year: string;
+  doi: string;
+  claim: string;
+  evidence: string;
+  summary: string;
+  averageRating: number;
+  totalRatings: number;
+}
+
 interface ArticlesInterface {
   id: string;
   title: string;
@@ -12,6 +27,7 @@ interface ArticlesInterface {
   doi: string;
   claim: string;
   evidence: string;
+  summary: string;
   averageRating: number;
   totalRatings: number;
 }
@@ -21,7 +37,6 @@ type ArticlesProps = {
 };
 
 const Articles: NextPage<ArticlesProps> = ({ articles }) => {
-
   // Creating the headers
   const headers: { key: keyof ArticlesInterface; label: string }[] = [
     { key: "title", label: "Title" },
@@ -31,11 +46,11 @@ const Articles: NextPage<ArticlesProps> = ({ articles }) => {
     { key: "doi", label: "DOI" },
     { key: "claim", label: "Claim" },
     { key: "evidence", label: "Evidence" },
-    { key: "averageRating", label: "Average Rating"},
-    { key: "totalRatings", label: "Total Ratings"},
+    { key: "averageRating", label: "Average Rating" },
+    { key: "totalRatings", label: "Total Ratings" },
   ];
 
-  // this is the actual page element that displays the table
+  // This is the actual page element that displays the table
   return (
     <div className="container">
       <h1>Articles Index Page</h1>
@@ -45,27 +60,27 @@ const Articles: NextPage<ArticlesProps> = ({ articles }) => {
   );
 };
 
-// Apparently getStaticProps is called at runtime so that data can be pre-rendered on an html page.
-// this getStaticProps is called (revalidated) every 10 seconds.
-export const getStaticProps: GetStaticProps<ArticlesProps> = async (_) => {
-  
-  // here is where we use axios to call our api endpoint and collect the data.
+// Apparently, getStaticProps is called at runtime so that data can be pre-rendered on an HTML page.
+// This getStaticProps is called (revalidated) every 10 seconds.
+export const getStaticProps: GetStaticProps<ArticlesProps> = async () => {
+  // Here is where we use axios to call our API endpoint and collect the data.
   try {
-    // this is the articles index page which is actually accessed when we click the 'view articles' button.
-    // so the request is to /articles which corresponds to the @Get('') findAll function in articles.controllers.
-    const response = await axios.get('http://localhost:8082/articles');
+    
+    // This is the articles index page which is actually accessed when we click the 'view articles' button.
+    // So the request is to /articles which corresponds to the @Get('') findAll function in articles.controllers.
+    const response = await axios.get<ApiArticle[]>('http://localhost:8082/articles');
 
-
-    // all of the articles are mapped inside of 'data'. 
-    const articles = response.data.map((article: any) => ({
-      id: article._id,
+    // All of the articles are mapped inside of 'data'. 
+    const articles: ArticlesInterface[] = response.data.map((article) => ({
+      id: article._id, // Use the _id field directly from the API response
       title: article.title,
-      authors: article.authors.join(', '),
+      authors: article.authors.join(', '), // Join authors array into a string
       source: article.source,
       publication_year: article.publication_year,
       doi: article.doi,
       claim: article.claim,
       evidence: article.evidence,
+      summary: article.summary,
       averageRating: article.averageRating,
       totalRatings: article.totalRatings,
     }));
@@ -74,16 +89,15 @@ export const getStaticProps: GetStaticProps<ArticlesProps> = async (_) => {
       props: {
         articles,
       },
-
       // Here is where it is told to 'refresh' every 10 seconds.
-      revalidate: 10,
-    }
+      revalidate: 10, // Set revalidation time
+    };
   } catch (error) {
     console.error('Error fetching articles:', error);
 
     return {
       props: {
-        articles: [],
+        articles: [], // Return an empty array on error
       },
     };
   }

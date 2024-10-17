@@ -11,6 +11,9 @@ export class Article {
     @Prop({ required: true})
     authors: string[]; // CHANGED TO STRING[] NOTE
 
+    @Prop({ required: false}) // Not required as maybe a user might be unsure of what cateogry to select
+    category: string;
+
     @Prop({ required: true})
     source: string;
 
@@ -25,6 +28,9 @@ export class Article {
 
     @Prop ({ required : true})
     evidence: string;
+
+    @Prop ({ required: false})
+    summary: string;
 
     @Prop ({ type: Number, default: 0})
     averageRating: number;
