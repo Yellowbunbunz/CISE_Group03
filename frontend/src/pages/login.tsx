@@ -19,7 +19,7 @@ export default function Login() {
     }
 
     try{
-      const response = await axios.post("http://localhost:8082/users/login", loginData);
+      const response = await axios.post("https://speed-backend-1.vercel.app/users/login", loginData);
 
       const login_token = response.data;
       console.log(login_token);
