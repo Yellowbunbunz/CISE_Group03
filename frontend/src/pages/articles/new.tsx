@@ -37,7 +37,7 @@ const NewDiscussion = () => {
 
     try {
       const response = await axios.post('https://speed-backend-1.vercel.app/articles', articleData);
-
+      console.log("article was submitted successfully: ", response.data);
     } catch (error) {
       console.error('Error submitting the article:', error);
     }
